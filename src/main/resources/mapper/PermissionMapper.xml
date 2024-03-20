@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bit.dao.PermissionMapper">
+    <select id="findPermissionListByUserId" resultType="com.bit.entity.Permission">
+        select distinct t5.`id`,t5.`parent_id`,t5.`label`,t5.`code`,t5.`url`,t5.`type`,t5.`icon`,t5.`remark`,t5.`path`,t5.`name`
+        from sys_user t1
+                 left join sys_user_role t2 on t2.`user_id`=t1.`id`
+                 left join sys_role t3 on t3.`id`=t2.`role_id`
+                 left join sys_role_permission t4 on t4.`role_Id`=t3.`id`
+                 left join sys_permission t5 on t5.`id`=t4.`permission_Id`
+        where t1.id = #{userId}
+        order by t5.`id`
+    </select>
+</mapper>
