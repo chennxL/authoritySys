@@ -1,11 +1,13 @@
 package com.bit.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -38,4 +40,12 @@ public class Department implements Serializable {
 
 //    是否删除
     private Integer isDelete;
+
+    //是否展开
+    @TableField(exist = false)
+    private Boolean open;
+
+    //子部门
+    @TableField(exist = false)
+    private List<Department> children = new ArrayList<Department>();
 }

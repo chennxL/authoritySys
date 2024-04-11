@@ -58,9 +58,10 @@ public static<T> Result<T> ok(T data){
 //    是否存在
     public static<T> Result<T> exist(){
         Result<T> result = new Result<T>();
-        result.setSuccess(true);
-        result.setCode(ResultCode.SUCCESS);
-        result.setMessage("执行成功");
+        result.setSuccess(false);//存在该数据
+        //由于vue-element-admin在响应时的状态码是200，如果不是200就报错
+        result.setCode(ResultCode.SUCCESS);//执行成功，但存在该数据
+        result.setMessage("该数据存在");
         return result;
     }
 
